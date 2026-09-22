@@ -1,11 +1,14 @@
 package index
 
 import (
+	"github.com/upstash/terraform-provider-upstash/v2/upstash/utils"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func DataResourceIndex() *schema.Resource {
 	return &schema.Resource{
+		Description: "Reads an existing Upstash Vector index. " + utils.CredentialsRemovedDescription,
 		ReadContext: resourceIndexRead,
 
 		Schema: map[string]*schema.Schema{
@@ -38,18 +41,6 @@ func DataResourceIndex() *schema.Resource {
 				Type:        schema.TypeString,
 				Computed:    true,
 				Description: "Associated endpoint of your index.",
-			},
-			"token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "REST token to send request to the related index.",
-			},
-			"read_only_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Readonly REST token to send request to the related index. You can't perform update operation with this token.",
 			},
 			"type": {
 				Type:        schema.TypeString,

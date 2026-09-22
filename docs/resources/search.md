@@ -3,12 +3,12 @@
 page_title: "upstash_search Resource - terraform-provider-upstash"
 subcategory: ""
 description: |-
-  
+  Manages an Upstash Search index. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 ---
 
 # upstash_search (Resource)
 
-
+Manages an Upstash Search index. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 
 ## Example Usage
 
@@ -48,7 +48,3 @@ resource "upstash_search" "searchResource" {
 - `max_vector_count` (Number) The number of maximum that your search can contain.
 - `max_writes_per_request` (Number) The number of maximum vectors in a write operation. Only upsert operations are included in write operations.
 - `max_writes_per_second` (Number) The number of maximum write operations you can perform per second. Only upsert operations are included in write count.
-- `read_only_token` (String, Sensitive) Readonly REST token to send request to the related search. You can't perform update operation with this token.
-- `token` (String, Sensitive) REST token to send request to the related search.
-
-

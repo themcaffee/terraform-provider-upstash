@@ -3,12 +3,12 @@
 page_title: "upstash_vector_index_data Data Source - terraform-provider-upstash"
 subcategory: ""
 description: |-
-  
+  Reads an existing Upstash Vector index. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 ---
 
 # upstash_vector_index_data (Data Source)
 
-
+Reads an existing Upstash Vector index. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 
 ## Example Usage
 
@@ -41,11 +41,7 @@ data "upstash_vector_index_data" "vectorResourceData" {
 - `max_writes_per_request` (Number) The number of maximum vectors in a write operation. Only upsert operations are included in write operations.
 - `max_writes_per_second` (Number) The number of maximum write operations you can perform per second. Only upsert operations are included in write count.
 - `name` (String) Name of the index.
-- `read_only_token` (String, Sensitive) Readonly REST token to send request to the related index. You can't perform update operation with this token.
 - `region` (String) The region where your index is deployed.
 - `reserved_price` (Number) Monthly pricing of your index. Only available for fixed and pro plans.
 - `similarity_function` (String) Associated distance metric to calculate the similarity.
-- `token` (String, Sensitive) REST token to send request to the related index.
 - `type` (String) Associated plan of the index. Either `free`, `paid`, `fixed` or `pro`.
-
-

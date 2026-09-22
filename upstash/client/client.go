@@ -9,7 +9,8 @@ import (
 	"github.com/upstash/terraform-provider-upstash/v2/upstash/utils"
 )
 
-const UPSTASH_API_ENDPOINT = "https://api.upstash.com"
+// UPSTASH_API_ENDPOINT is a variable only so that tests can point the client at a mock API.
+var UPSTASH_API_ENDPOINT = "https://api.upstash.com"
 
 var clientHeader = req.Header{"X-Upstash-Client": "terraform"}
 

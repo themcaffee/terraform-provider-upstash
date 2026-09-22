@@ -1,11 +1,15 @@
 package index
 
 import (
+	"github.com/upstash/terraform-provider-upstash/v2/upstash/utils"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceIndex() *schema.Resource {
-	return &schema.Resource{
+	r := &schema.Resource{
+		Description:   "Manages an Upstash Vector index. " + utils.CredentialsRemovedDescription,
+		SchemaVersion: 1,
 		CreateContext: resourceIndexCreate,
 		ReadContext:   resourceIndexRead,
 		UpdateContext: resourceIndexUpdate,
@@ -40,18 +44,6 @@ func ResourceIndex() *schema.Resource {
 				Type:        schema.TypeString,
 				Computed:    true,
 				Description: "Associated endpoint of your index.",
-			},
-			"token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "REST token to send request to the related index.",
-			},
-			"read_only_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Readonly REST token to send request to the related index. You can't perform update operation with this token.",
 			},
 			"type": {
 				Type:        schema.TypeString,
@@ -121,4 +113,9 @@ func ResourceIndex() *schema.Resource {
 			},
 		},
 	}
+	// Schema version 0 persisted credentials to state; see RemoveCredentialsStateUpgrader.
+	r.StateUpgraders = []schema.StateUpgrader{
+		utils.RemoveCredentialsStateUpgrader(r.Schema, "token", "read_only_token"),
+	}
+	return r
 }

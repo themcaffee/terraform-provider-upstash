@@ -4,8 +4,6 @@ type Search struct {
 	Id                   string  `json:"id"`
 	Name                 string  `json:"name"`
 	Endpoint             string  `json:"endpoint"`
-	Token                string  `json:"token"`
-	ReadOnlyToken        string  `json:"read_only_token"`
 	Type                 string  `json:"type"`
 	Region               string  `json:"region"`
 	CreationTime         int64   `json:"creation_time"`

@@ -3,12 +3,12 @@
 page_title: "upstash_redis_database Resource - terraform-provider-upstash"
 subcategory: ""
 description: |-
-  
+  Manages an Upstash Redis database. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 ---
 
 # upstash_redis_database (Resource)
 
-
+Manages an Upstash Redis database. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 
 ## Example Usage
 
@@ -57,11 +57,6 @@ resource "upstash_redis_database" "exampleDB" {
 - `db_memory_threshold` (Number) Memory threshold for the database
 - `endpoint` (String) Database URL for connection
 - `id` (String) The ID of this resource.
-- `password` (String, Sensitive) Password of the database
 - `port` (Number) Port of the endpoint
-- `read_only_rest_token` (String, Sensitive) Rest Token for the database.
-- `rest_token` (String, Sensitive) Rest Token for the database.
 - `state` (String) State of the database
 - `user_email` (String) User email for the database
-
-

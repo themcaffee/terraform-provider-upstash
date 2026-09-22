@@ -6,7 +6,6 @@ type Database struct {
 	Region                 string   `json:"region"`
 	Port                   int      `json:"port"`
 	CreationTime           int64    `json:"creation_time"`
-	Password               string   `json:"password,omitempty"`
 	Endpoint               string   `json:"endpoint"`
 	Tls                    bool     `json:"tls"`
 	Eviction               bool     `json:"eviction"`
@@ -15,8 +14,6 @@ type Database struct {
 	Budget                 int      `json:"budget"`
 	Consistent             bool     `json:"consistent"`
 	MultiZone              bool     `json:"multizone"`
-	RestToken              string   `json:"rest_token,omitempty"`
-	ReadOnlyRestToken      string   `json:"read_only_rest_token,omitempty"`
 	DatabaseType           string   `json:"database_type"`
 	State                  string   `json:"state"`
 	UserEmail              string   `json:"user_email"`

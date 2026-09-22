@@ -3,12 +3,12 @@
 page_title: "upstash_search_data Data Source - terraform-provider-upstash"
 subcategory: ""
 description: |-
-  
+  Reads an existing Upstash Search index. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 ---
 
 # upstash_search_data (Data Source)
 
-
+Reads an existing Upstash Search index. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 
 ## Example Usage
 
@@ -40,10 +40,6 @@ data "upstash_search_data" "exampleSearchData" {
 - `max_writes_per_request` (Number) The number of maximum vectors in a write operation. Only upsert operations are included in write operations.
 - `max_writes_per_second` (Number) The number of maximum write operations you can perform per second. Only upsert operations are included in write count.
 - `name` (String) Name of the search.
-- `read_only_token` (String, Sensitive) Readonly REST token to send request to the related search. You can't perform update operation with this token.
 - `region` (String) The region where your search is deployed.
 - `reserved_price` (Number) Monthly pricing of your search. Only available for fixed and pro plans.
-- `token` (String, Sensitive) REST token to send request to the related search.
 - `type` (String) Associated plan of the search.
-
-

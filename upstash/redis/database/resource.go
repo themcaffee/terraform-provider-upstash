@@ -1,6 +1,8 @@
 package database
 
 import (
+	"github.com/upstash/terraform-provider-upstash/v2/upstash/utils"
+
 	"context"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/customdiff"
@@ -10,7 +12,9 @@ import (
 )
 
 func ResourceDatabase() *schema.Resource {
-	return &schema.Resource{
+	r := &schema.Resource{
+		Description:   "Manages an Upstash Redis database. " + utils.CredentialsRemovedDescription,
+		SchemaVersion: 1,
 		CreateContext: resourceDatabaseCreate,
 		ReadContext:   resourceDatabaseRead,
 		UpdateContext: resourceDatabaseUpdate,
@@ -48,12 +52,6 @@ func ResourceDatabase() *schema.Resource {
 				Type:        schema.TypeString,
 				Computed:    true,
 				Description: "Database URL for connection",
-			},
-			"password": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Password of the database",
 			},
 			"consistent": {
 				Type:        schema.TypeBool,
@@ -125,18 +123,6 @@ func ResourceDatabase() *schema.Resource {
 				Type:        schema.TypeInt,
 				Computed:    true,
 				Description: "Port of the endpoint",
-			},
-			"rest_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Rest Token for the database.",
-			},
-			"read_only_rest_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Rest Token for the database.",
 			},
 			"creation_time": {
 				Type:        schema.TypeInt,
@@ -222,4 +208,9 @@ func ResourceDatabase() *schema.Resource {
 			}),
 		),
 	}
+	// Schema version 0 persisted credentials to state; see RemoveCredentialsStateUpgrader.
+	r.StateUpgraders = []schema.StateUpgrader{
+		utils.RemoveCredentialsStateUpgrader(r.Schema, "password", "rest_token", "read_only_rest_token"),
+	}
+	return r
 }

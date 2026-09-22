@@ -1,11 +1,14 @@
 package search
 
 import (
+	"github.com/upstash/terraform-provider-upstash/v2/upstash/utils"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func DataResourceSearch() *schema.Resource {
 	return &schema.Resource{
+		Description: "Reads an existing Upstash Search index. " + utils.CredentialsRemovedDescription,
 		ReadContext: resourceSearchRead,
 
 		Schema: map[string]*schema.Schema{
@@ -28,18 +31,6 @@ func DataResourceSearch() *schema.Resource {
 				Type:        schema.TypeString,
 				Computed:    true,
 				Description: "Associated endpoint of your search.",
-			},
-			"token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "REST token to send request to the related search.",
-			},
-			"read_only_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Readonly REST token to send request to the related search. You can't perform update operation with this token.",
 			},
 			"type": {
 				Type:        schema.TypeString,

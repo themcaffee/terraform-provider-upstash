@@ -3,12 +3,12 @@
 page_title: "upstash_redis_database_data Data Source - terraform-provider-upstash"
 subcategory: ""
 description: |-
-  
+  Reads an existing Upstash Redis database. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 ---
 
 # upstash_redis_database_data (Data Source)
 
-
+Reads an existing Upstash Redis database. Credentials (passwords and REST tokens) are intentionally not exposed as attributes, so that they are never persisted to state. Retrieve them from the Upstash Console or API instead.
 
 ## Example Usage
 
@@ -45,17 +45,12 @@ data "upstash_redis_database_data" "exampleDBData" {
 - `id` (String) The ID of this resource.
 - `ip_allowlist` (Set of String) Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
 - `multizone` (Boolean, Deprecated) When enabled database is highly available and deployed multi-zone
-- `password` (String, Sensitive) Password of the database
 - `platform` (String) Cloud provider of the database. Possible values: `aws`, `gcp`.
 - `port` (Number) Port of the endpoint
 - `primary_region` (String) Primary region for the database
 - `prod_pack` (Boolean) Whether Prod Pack is enabled for the database.
-- `read_only_rest_token` (String, Sensitive) Rest Token for the database.
 - `read_regions` (Set of String) Read regions for the database
 - `region` (String) Region of the database. For globals, check for primary_region and read_regions fields
-- `rest_token` (String, Sensitive) Rest Token for the database.
 - `state` (String) State of the database
 - `tls` (Boolean, Deprecated) When enabled, data is encrypted in transit.
 - `user_email` (String) User email for the database
-
-

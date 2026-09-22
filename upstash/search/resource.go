@@ -1,11 +1,15 @@
 package search
 
 import (
+	"github.com/upstash/terraform-provider-upstash/v2/upstash/utils"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func ResourceSearch() *schema.Resource {
-	return &schema.Resource{
+	r := &schema.Resource{
+		Description:   "Manages an Upstash Search index. " + utils.CredentialsRemovedDescription,
+		SchemaVersion: 1,
 		CreateContext: resourceSearchCreate,
 		ReadContext:   resourceSearchRead,
 		UpdateContext: resourceSearchUpdate,
@@ -30,18 +34,6 @@ func ResourceSearch() *schema.Resource {
 				Type:        schema.TypeString,
 				Computed:    true,
 				Description: "Associated endpoint of your search.",
-			},
-			"token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "REST token to send request to the related search.",
-			},
-			"read_only_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Readonly REST token to send request to the related search. You can't perform update operation with this token.",
 			},
 			"type": {
 				Type:        schema.TypeString,
@@ -111,4 +103,9 @@ func ResourceSearch() *schema.Resource {
 			},
 		},
 	}
+	// Schema version 0 persisted credentials to state; see RemoveCredentialsStateUpgrader.
+	r.StateUpgraders = []schema.StateUpgrader{
+		utils.RemoveCredentialsStateUpgrader(r.Schema, "token", "read_only_token"),
+	}
+	return r
 }

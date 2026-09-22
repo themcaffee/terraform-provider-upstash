@@ -2,7 +2,6 @@ package database
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -42,7 +41,7 @@ func resourceDatabaseUpdate(ctx context.Context, data *schema.ResourceData, m in
 
 		for _, v := range (data.Get("read_regions").(*schema.Set)).List() {
 			if v.(string) == primaryRegion {
-				return diag.Errorf(fmt.Sprintf("Primary region '%s' can not be in the list of read regions.", primaryRegion))
+				return diag.Errorf("Primary region '%s' can not be in the list of read regions.", primaryRegion)
 			}
 			readRegions = append([]string{v.(string)}, readRegions...)
 		}
@@ -129,7 +128,6 @@ func resourceDatabaseRead(ctx context.Context, data *schema.ResourceData, m inte
 		"database_name":              database.DatabaseName,
 		"region":                     database.Region,
 		"endpoint":                   database.Endpoint,
-		"password":                   database.Password,
 		"consistent":                 database.Consistent,
 		"multizone":                  database.MultiZone,
 		"tls":                        database.Tls,
@@ -138,8 +136,6 @@ func resourceDatabaseRead(ctx context.Context, data *schema.ResourceData, m inte
 		"prod_pack":                  database.ProdPack,
 		"budget":                     database.Budget,
 		"port":                       database.Port,
-		"rest_token":                 database.RestToken,
-		"read_only_rest_token":       database.ReadOnlyRestToken,
 		"database_type":              database.DatabaseType,
 		"state":                      database.State,
 		"user_email":                 database.UserEmail,

@@ -6,8 +6,6 @@ type Index struct {
 	SimilarityFunction   string  `json:"similarity_function"`
 	DimensionCount       int     `json:"dimension_count"`
 	Endpoint             string  `json:"endpoint"`
-	Token                string  `json:"token"`
-	ReadOnlyToken        string  `json:"read_only_token"`
 	Type                 string  `json:"type"`
 	Region               string  `json:"region"`
 	CreationTime         int64   `json:"creation_time"`

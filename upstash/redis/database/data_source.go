@@ -1,9 +1,13 @@
 package database
 
-import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+import (
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/upstash/terraform-provider-upstash/v2/upstash/utils"
+)
 
 func DataSourceDatabase() *schema.Resource {
 	return &schema.Resource{
+		Description: "Reads an existing Upstash Redis database. " + utils.CredentialsRemovedDescription,
 		ReadContext: resourceDatabaseRead,
 		Schema: map[string]*schema.Schema{
 			"database_id": {
@@ -30,12 +34,6 @@ func DataSourceDatabase() *schema.Resource {
 				Type:        schema.TypeString,
 				Computed:    true,
 				Description: "Database URL for connection",
-			},
-			"password": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Password of the database",
 			},
 			"consistent": {
 				Type:        schema.TypeBool,
@@ -100,18 +98,6 @@ func DataSourceDatabase() *schema.Resource {
 				Type:        schema.TypeInt,
 				Computed:    true,
 				Description: "Port of the endpoint",
-			},
-			"rest_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Rest Token for the database.",
-			},
-			"read_only_rest_token": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Rest Token for the database.",
 			},
 			"creation_time": {
 				Type:        schema.TypeInt,

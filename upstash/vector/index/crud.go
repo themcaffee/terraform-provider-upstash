@@ -62,8 +62,6 @@ func resourceIndexRead(ctx context.Context, data *schema.ResourceData, m interfa
 		"similarity_function":     index.SimilarityFunction,
 		"dimension_count":         index.DimensionCount,
 		"endpoint":                index.Endpoint,
-		"token":                   index.Token,
-		"read_only_token":         index.ReadOnlyToken,
 		"type":                    indexType,
 		"region":                  index.Region,
 		"max_vector_count":        index.MaxVectorCount,

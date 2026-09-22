@@ -58,8 +58,6 @@ func resourceSearchRead(ctx context.Context, data *schema.ResourceData, m interf
 		"id":                      search.Id,
 		"name":                    search.Name,
 		"endpoint":                search.Endpoint,
-		"token":                   search.Token,
-		"read_only_token":         search.ReadOnlyToken,
 		"type":                    searchType,
 		"region":                  search.Region,
 		"max_vector_count":        search.MaxVectorCount,
